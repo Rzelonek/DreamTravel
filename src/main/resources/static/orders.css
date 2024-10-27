@@ -1,0 +1,23 @@
+.order-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.order-row div {
+    width: 24%;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+    margin: 5px 0;
+}
+
+.position-wrapper {
+    display: none;
+}

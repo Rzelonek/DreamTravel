@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dream Travel - rezerwacje</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="orders.css">
+    <link rel="stylesheet" href="navigation.css">
+    <link rel="stylesheet" href="cartstyle.css">
+    <style>
+        /* Modal styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4); 
+        }
+
+        .modal-content {
+            background-color: #4d96ff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px;
+            
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        // Function to open modal and display order info
+        function openModal(orderId) {
+            const modal = document.getElementById('orderModal');
+            const modalBody = document.getElementById('modalBody');
+            
+            // Populate modal with specific order info
+            const orderInfo = document.getElementById('order-' + orderId).innerHTML;
+            modalBody.innerHTML = orderInfo;
+
+            modal.style.display = "block";
+        }
+
+        // Close modal when clicking on (x)
+        function closeModal() {
+            const modal = document.getElementById('orderModal');
+            modal.style.display = "none";
+        }
+
+        // Close modal when clicking outside of modal content
+        window.onclick = function(event) {
+            const modal = document.getElementById('orderModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div th:replace="~{fragments.html :: menu}"></div>
+
+<section class="section-1">
+    <div id="content">
+        <!-- Order Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>NR Zamówienia</th>
+                    <th>Data</th>
+                    <th>Status</th>
+                    <th>Suma</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="order : ${orders}" th:onclick="'openModal(' + ${order.id} + ')'">
+                    <td th:text="${order.id}"></td>
+                    <td th:text="${order.getFormattedDate()}"></td>
+                    <td th:text="${order.status}"></td>
+                    <td th:text="${#numbers.formatDecimal(order.sum, 1, 2) + ' zł'}"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Hidden order details to populate modal -->
+        <div th:each="order : ${orders}">
+            <div th:id="'order-' + ${order.id}" style="display: none;">
+                
+                <div th:if="${order.user != null}">
+                    <p>Zamówienie dla <span th:text="${order.user.name}"></span> <span th:text="${order.user.surname}"></span></p>
+                </div>
+
+
+
+                <!-- Display order status for regular users -->
+     
+         
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nazwa wycieczki</th>
+                            <th>Ilość osób</th>
+                            <th>Cena</th>
+                            <th>Suma</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="position : ${order.positions}">
+                            <td th:text="${position.trip.title}"></td>
+                            <td th:text="${position.quantity}"></td>
+                            <td th:text="${position.trip.price + ' zł'}"></td>
+                            <td th:text="${#numbers.formatDecimal(position.quantity * position.trip.price, 1, 2) + ' zł'}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal Structure -->
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="modalBody"></div>
+    </div>
+</div>
+
+</body>
+</html>

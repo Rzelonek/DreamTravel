@@ -1,0 +1,50 @@
+/* Main container */
+._index-container {
+      position: relative;
+      width: 100%;
+      height: 80vh; /* Full height of the viewport */
+      background-image: url('/mainimage.jpeg'); /* Main image as background */
+      background-size: cover; /* Cover the container completely */
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+  }
+  
+  /* Optional overlay to darken the background */
+  ._index-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+      z-index: 1; /* Ensure it sits below the text and logo */
+  }
+  
+  /* Centered text and logo */
+  ._index-text {
+      position: relative;
+      z-index: 2; /* Above the overlay */       
+      color: white; /* Text color */
+      text-align: center;
+  }
+  
+  .logo-image {
+      width: 150px; /* Adjust size of the logo */
+      height: auto; /* Maintain aspect ratio */
+      margin-bottom: 20px; /* Space between logo and text */
+  }
+  
+  /* Styling for the text */
+  ._index-text h1 {
+      font-size: 3rem;
+      margin: 0;
+  }
+  
+  ._index-text p {
+      font-size: 1.2rem;
+      margin: 10px 0;
+  }
+  

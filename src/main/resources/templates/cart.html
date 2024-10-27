@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Drean Travel - Koszyk</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="cartstyle.css">
+    <link rel="stylesheet" href="navigation.css">
+</head>
+<body>
+
+<div th:replace="~{fragments.html :: menu}"></div>
+
+<section class="section-1">
+    <div id="content">
+        <h2>Koszyk</h2>
+        
+
+
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <thead>
+                <tr>
+                  <th>Tytuł</th>
+                  <th>Autor</th>
+                  <th>Ilość</th>
+                  <th>Cena</th>
+                  <th>Suma </th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+
+
+          <div class="tbl-content">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tbody>
+                <tr th:each="position : ${session.cart}">
+                    <td th:text="${position.trip.title}"></td>
+                    <td th:text="${position.trip.direction}"></td>
+                    <td th:text="${position.quantity}"></td>
+                    <td th:text="${position.trip.price + ' PLN'}"></td>
+                    <td th:text="${position.quantity * position.trip.price + ' PLN'}"></td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div>Suma całkowita:</div>
+          <div th:text="${cartSum}"></div>
+  
+        <div class="p">
+            <a href="/order/add" class="cart_button">Zamów</a>
+            <div th:if="${param.error}" class="error">
+              <p th:text="${param.error}"></p>
+          </div>
+          
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

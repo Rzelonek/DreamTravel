@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="navigation.css">
+</head>
+<body>
+
+
+<header class="header" id="menu" th:fragment="menu">
+<nav class="nav navcontainer" >
+    <a href="/" class="nav__logo">
+        <img src="/logo.png"alt="Zdjęcie logo" width="100%" height="100%"   object-fit="cover" >
+    </a>
+
+
+    <ul class="nav__list">
+
+
+
+<li class="nav__item" th:if="${session.user != null}">
+    <a href="/cart" class="nav__link">
+        <i class="bi bi-arrow-up-right"></i>
+        <span>Koszyk</span>
+        
+        </a>
+</li>
+
+
+<li class="nav__item" th:if="${session.user != null}">
+    <a href="/order" class="nav__link">
+        <i class="bi bi-arrow-up-right"></i>
+        <span>Twoje rezerwacje</span>
+        
+        </a>
+</li>
+
+
+
+
+
+<li class="nav__item"  th:if="${session.user?.getRole() == T(pl.edu.wszib.media.store.model.User.Role).ADMIN}" >
+    <a href="/trip/add" class="nav__link">
+        <i class="bi bi-arrow-up-right"></i>
+        <span>Nowa wycieczka</span>
+        
+        </a>
+</li>
+
+
+
+
+    </ul>
+
+
+    <div class="nav__social">
+        <ul class="nav__list nav__social">
+
+        <li class="nav__item" th:if="${session.user == null}">
+            <a href="/login" class="nav__link">
+              
+                <span>Zaloguj</span>
+                
+                </a>
+        </li>
+
+        <li class="nav__item" th:if="${session.user != null}" >
+            <a href="/logout" class="nav__link">
+               
+                <span>Wyloguj</span>
+              
+                </a>
+        </li>
+
+    </ul>
+
+         <!-- Display logged-in user's name and balance -->
+        <span th:if="${session.user != null}">
+            <span th:text="${session.user.name}">User Name</span>
+            <span>: </span>
+            <a href="/balance" class="nav__link">
+                <span>Saldo</span>
+            </a>
+            <span th:text="${session.user.balance + ' PLN'}">0 PLN</span>
+        </span>
+    </div>
+
+
+</nav>
+</header>
+</body>
+</html>

@@ -1,0 +1,16 @@
+#login-form {
+    margin-top: 50px;
+}
+
+#login-form input {
+    display: block;
+    margin: 10px auto;
+}
+
+input[type=text], input[type=password] {
+    width: 400px;
+}
+
+input[type=submit] {
+    width: 120px;
+}

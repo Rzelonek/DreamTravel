@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dream Travel - Edytuj wycieczke</title>
+    <link rel="stylesheet" href="/NewProduct.css">
+    <link rel="stylesheet" href="/cart.css">
+    <link rel="stylesheet" href="/navigation.css">
+
+    <script>
+        async function copyPhotoBytes(tripId) {
+            try {
+                const response = await fetch(`/trip/photo/bytes/${tripId}`);
+                if (response.ok) {
+                    const bytes = await response.text(); // Assuming server returns the bytes as a base64 string
+                    await navigator.clipboard.writeText(bytes);
+                    alert("Photo bytes copied to clipboard!");
+                } else {
+                    alert("Failed to retrieve photo bytes.");
+                }
+            } catch (error) {
+                console.error("Error copying photo bytes:", error);
+            }
+        }
+    </script>
+
+
+</head>
+<body>
+
+<div th:replace="~{fragments.html :: menu}"></div>
+<section class="section-1">
+
+<div id="content" class="NewProduct_screen">
+    <form class="NewProduct_full" id="trip-form" method="post" enctype="multipart/form-data" th:action="@{/trip/edit/{id}(id=${tripModel.id})}" th:object="${tripModel}">
+     
+
+
+
+        <div class="NewProduct_container">
+                    <div class="NewProduct_img">         <div>
+                        <img th:src="@{/trip/photo/{id}(id=${tripModel.id})}" alt="Zdjęcie Wycieczki" width="100%" height="100%" object-fit="fill">
+                    </div>
+            </div>
+                    <div class="NewProduct_upload">         <label for="photo">Dodaj nowe zdjęcie Produktu:</label>
+                        <input type="file" id="photo" name="photo">
+                </div>
+                    <div class="NewProduct_name">       <input type="text" placeholder="Nazwa" class="NewProduct_input" th:field="*{title}"> </div>
+                    <div class="NewProduct_dsc"> 
+
+                        
+                        <textarea type="text" placeholder="Kierunek" class="NewProduct_textarea" th:field="*{direction}" rows="4" cols="50">Kierunek </textarea>
+                        <textarea type="text" placeholder="Opis" class="NewProduct_textarea" th:field="*{description}" rows="4" cols="50">Opis </textarea>
+                    </div>
+                    <div class="NewProduct_price">
+                        <div> Cena </div>
+                        <div> <input type="text" placeholder="Cena" class="NewProduct_input" th:field="*{price}">  </div>
+                                
+                                </div>
+                    <div class="NewProduct_qty">   
+            
+                            <div> Ilość </div>
+                            <div>                 <input type="text" placeholder="Ilość" class="NewProduct_input" th:field="*{quantity}"> </div>
+                            </div>
+                    <div class="NewProduct_type">    
+                        
+                            <div> Typ </div>
+                            <div class="NewProduct_radio">              <input type="radio" class="NewProduct_input" id="pathogens1" th:field="*{type}" value="Last Minute" >      <label  for="pathogens1">Last Minute</label>   </div>
+                            <div class="NewProduct_radio">              <input type="radio" class="NewProduct_input" id="pathogens2" th:field="*{type}" value="All inclusive" >   <label  for="pathogens2">All inclusive</label>    </div>
+                            <div class="NewProduct_radio">              <input type="radio" class="NewProduct_input" id="pathogens3" th:field="*{type}" value="Egzotyka" >     <label  for="pathogens3">Egzotyka</label>  </div>
+                            <div class="NewProduct_radio">              <input type="radio" class="NewProduct_input" id="pathogens4" th:field="*{type}" value="Popularne" >     <label  for="pathogens4">Popularne</label>  </div>
+                            <div class="NewProduct_radio">              <input type="radio" class="NewProduct_input" id="pathogens5" th:field="*{type}" value="Nowa" >     <label  for="pathogens5">Nowa</label>  </div>
+                            <div class="NewProduct_radio">              <input type="radio" class="NewProduct_input" id="pathogens6" th:field="*{type}" value="Objazdowa" >     <label  for="pathogens6">Objazdowa</label>  </div>  
+
+                            </div>
+                            <div class="NewProduct_add">     <button type="submit" value="OK" class="NewProduct_button"> Dodaj / Edytuj </button>  </div>
+        </div>
+
+       
+
+
+
+
+    </form>
+
+<!-- Corrected Dev Button for copying bytes to clipboard -->
+<div class="NewProduct_dev">
+    <button type="button" th:onclick="'copyPhotoBytes(' + ${tripModel.id} + ')'">Copy Photo Bytes</button>
+</div>
+
+
+
+    
+
+</div>
+</section>
+</body>
+</html>

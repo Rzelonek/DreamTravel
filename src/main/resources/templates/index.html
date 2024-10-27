@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dream Travel - najlepsze podróże</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="navigation.css">
+</head>
+<body>
+    <div th:replace="~{fragments.html :: menu}"></div>
+    <section class="section-1">
+
+
+        <div class="_index-container">
+            <div class="_index-overlay"></div>
+            <div class="_index-text">
+                <div>
+                    <img src="/logo.png" alt="Zdjęcie logo" class="logo-image">
+                </div>
+                <h1>Witaj w Dream Travel</h1>
+                <p>Najlepszy organizator twojej podróży</p>
+                <p>Wybierz swoją wymarzoną podróż</p>
+                <p>To gdzie się chcesz udać? </p>
+                <div class="look_for_container">
+                    <form class="look_for_box" method="get">
+                
+            
+                            <label class="label-container">
+                            <input type="text" class="input-field" required>
+                            <ul class="animated-list">
+                                <li data-char="s">S</li>
+                                <li data-char="e">z</li>
+                                <li data-char="a">u</li>
+                                <li data-char="r">k</li>
+                                <li data-char="c">a</li>
+                                <li data-char="h">j</li>
+                            </ul>
+                        </label>
+                  
+            
+                    </form>
+                    </div>
+
+            </div>
+        </div>
+        
+
+
+
+
+
+    <div class="product-grid">
+
+        <div class="product-card" th:each="trip : ${trips}">
+
+            <div th:text="${'Typ: ' + trip.type}" class="product-card-badge"></div>
+            <div th:text="${trip.title}" class="product-card-title"></div>
+            <div th:if="${trip.photo != null}" class="product-card-image">
+                <img th:src="@{/trip/photo/{id}(id=${trip.id})}" alt="Zdjęcie Wycieczki" width="100%" height="100%"   object-fit="cover" >
+            </div>
+            <div th:if="${trip.photo == null}" class="product-card-image">
+            <div class="product-card-noimage">      No image </div>
+            </div>
+            <div th:text="${trip.direction}" class="product-card-description "></div>
+            <div th:text="${'Cena za osobę: ' + trip.price}" class="product-card-price"></div>
+            <div th:text="${'Wolne miejsca: ' + trip.quantity}" class="product-card-price"></div>
+
+               <a th:href="@{/cart/add/{id}(id=${trip.id})}" class="product-card-box " th:if="${session.user != null}">
+                <div class="product-card-button"> Dodaj do koszyka </div> </a> 
+              <a th:href="@{/trip/edit/{id}(id=${trip.id})}" class="product-card-box " th:if="${session.user?.getRole() == T(pl.edu.wszib.media.store.model.User.Role).ADMIN}">
+                <div class="product-card-button"> Edytuj </div>  </a> 
+
+                <a th:href="@{/trip/details/{id}(id=${trip.id})}" class="product-card-box " th:if="${session.user?.getRole() == T(pl.edu.wszib.media.store.model.User.Role).USER}">
+                    <div class="product-card-button"> Wiecej </div>  </a> 
+        
+
+
+        </div>
+
+    </div>
+    
+    </section>
+
+    
+</body>
+</html>

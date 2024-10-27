@@ -1,0 +1,374 @@
+
+.parent_details {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(5, 1fr);
+      gap: 8px;
+      margin-top: 8vh;
+  }
+      
+  .photos_details {
+      grid-column: span 2 / span 2;
+      grid-row: span 4 / span 4;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #f5f5f5;
+      border-radius: 0.625rem;
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00ff0c",endColorstr="#00d4ff",GradientType=1);
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+
+
+  
+  
+  .goback_details {
+      grid-column: span 2 / span 2;
+      grid-column-start: 1;
+      grid-row-start: 5;
+  }
+  
+  .title_details {
+      grid-column: span 2 / span 2;
+      grid-column-start: 3;
+      grid-row-start: 1;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0.625rem;
+
+  }
+
+
+  
+  
+  .description_details {
+      grid-column: span 2 / span 2;
+      grid-row: span 3 / span 3;
+      grid-column-start: 3;
+      grid-row-start: 2;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      border-radius: 0.625rem;
+  }
+  
+  .buy_details {
+      grid-row: span 4 / span 4;
+      grid-column-start: 5;
+      grid-row-start: 1;
+      background-color: #3498db;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      border-radius: 0.625rem;
+      padding: 10px 20px;
+      color: white;
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      text-align: center;
+      margin-bottom: 20vh;
+  }
+          
+.price_text_details {
+      font-size: 22px;
+      color: #e74c3c;
+      margin-bottom: 10px;
+  }
+
+
+
+  .available-space_details {
+      font-size: 16px;
+      margin-bottom: 15px;
+  }
+
+  .slider-container_details {
+      margin: 15px 0;
+  }
+  
+  .slider-container_details input[type="range"] {
+      width: 100%;
+      accent-color: #31cc00;
+  }
+
+
+
+  #person-count {
+      display: inline-block;
+      margin-left: 10px;
+      font-weight: bold;
+  }
+  
+  .add-to-cart_details {
+      background-color: #31cc00;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 20px;
+  }
+  
+
+  .map_details iframe {
+      width: 100%;   /* Takes up full width of the parent */
+      height: 100%;  /* Takes up full height of the parent */
+      min-height: 300px; /* Ensures the iframe doesn't become too small */
+      border: 0;
+  }
+ 
+
+  .add-to-cart_details:hover {
+      background-color: #2980b9;
+  }
+
+  .map_details {
+      padding: 20px;
+      overflow: hidden;
+  }
+
+
+
+
+
+
+
+
+
+  
+.type--A{
+      --line_color : #555555 ;
+      --back_color : #FFECF6  ;
+    }
+    .type--B{
+      --line_color : #1b1919 ;
+      --back_color : #E9ECFF
+    }
+    .type--C{
+      --line_color : #00135C ;
+      --back_color : #DEFFFA 
+    }
+    .button{
+        position : relative ;
+        z-index : 0 ;
+        width : 240px ;
+        height : 56px ;
+        text-decoration : none ;
+        font-size : 14px ; 
+        font-weight : bold ;
+        color : var(--line_color) ;
+        letter-spacing : 2px ;
+        transition : all .3s ease ;
+    }
+    .button__text{
+        display : flex ;
+        justify-content : center ;
+        align-items : center ;
+        width : 100% ;
+        height : 100% ;
+    }
+    .button::before,
+    .button::after,
+    .button__text::before,
+    .button__text::after{
+        content : '' ;
+        position : absolute ;
+        height : 3px ;
+        border-radius : 2px ;
+        background : var(--line_color) ;
+        transition : all .5s ease ;
+    }
+    .button::before{
+        top : 0 ;
+        left : 54px ;
+        width : calc( 100% - 56px * 2 - 16px ) ;
+    }
+    .button::after{
+        top : 0 ;
+        right : 54px ;
+        width : 8px ;
+    }
+    .button__text::before{
+        bottom : 0 ;
+        right : 54px ;
+        width : calc( 100% - 56px * 2 - 16px ) ;
+    }
+    .button__text::after{
+        bottom : 0 ;
+        left : 54px ;
+        width : 8px ;
+    }
+    .button__line{
+        position : absolute ;
+        top : 0 ;
+        width : 56px ;
+        height : 100% ;
+        overflow : hidden ;
+    }
+    .button__line::before{
+        content : '' ;
+        position : absolute ;
+        top : 0 ;
+        width : 150% ;
+        height : 100% ;
+        box-sizing : border-box ;
+        border-radius : 300px ;
+        border : solid 3px var(--line_color) ;
+    }
+    .button__line:nth-child(1),
+    .button__line:nth-child(1)::before{
+        left : 0 ;
+    }
+    .button__line:nth-child(2),
+    .button__line:nth-child(2)::before{
+        right : 0 ;
+    }
+    .button:hover{
+        letter-spacing : 6px ;
+    }
+    .button:hover::before,
+    .button:hover .button__text::before{
+        width : 8px ;
+    }
+    .button:hover::after,
+    .button:hover .button__text::after{
+        width : calc( 100% - 56px * 2 - 16px ) ;
+    }
+    .button__drow1,
+    .button__drow2{
+        position : absolute ;
+        z-index : -1 ;
+        border-radius : 16px ;
+        transform-origin : 16px 16px ;
+    }
+    .button__drow1{
+        top : -16px ;
+        left : 40px ;
+        width : 32px ;
+        height : 0;
+        transform : rotate( 30deg ) ;
+    }
+    .button__drow2{
+        top : 44px ;
+        left : 77px ;
+        width : 32px ;
+        height : 0 ;
+        transform : rotate(-127deg ) ;
+    }
+    .button__drow1::before,
+    .button__drow1::after,
+    .button__drow2::before,
+    .button__drow2::after{
+        content : '' ;
+        position : absolute ;
+    }
+    .button__drow1::before{
+        bottom : 0 ;
+        left : 0 ;
+        width : 0 ;
+        height : 32px ;
+        border-radius : 16px ;
+        transform-origin : 16px 16px ;
+        transform : rotate( -60deg ) ;
+    }
+    .button__drow1::after{
+        top : -10px ;
+        left : 45px ;
+        width : 0 ;
+        height : 60px ;
+        border-radius : 16px ;
+        transform-origin : 16px 16px ;
+        transform : rotate( 69deg ) ;
+    }
+    .button__drow2::before{
+        bottom : 0 ;
+        left : 0 ;
+        width : 0 ;
+        height : 32px ;
+        border-radius : 16px ;
+        transform-origin : 16px 16px ;
+        transform : rotate( -146deg ) ;
+    }
+    .button__drow2::after{
+        bottom : 26px ;
+        left : -40px ;
+        width : 0 ;
+        height : 32px ;
+        border-radius : 16px ;
+        transform-origin : 16px 16px ;
+        transform : rotate( -262deg ) ;
+    }
+    .button__drow1,
+    .button__drow1::before,
+    .button__drow1::after,
+    .button__drow2,
+    .button__drow2::before,
+    .button__drow2::after{
+        background : var( --back_color ) ;
+    }
+    .button:hover .button__drow1{
+        animation : drow1 ease-in .06s ;
+        animation-fill-mode : forwards ;
+    }
+    .button:hover .button__drow1::before{
+        animation : drow2 linear .08s .06s ;
+        animation-fill-mode : forwards ;
+    }
+    .button:hover .button__drow1::after{
+        animation : drow3 linear .03s .14s ;
+        animation-fill-mode : forwards ;
+    }
+    .button:hover .button__drow2{
+        animation : drow4 linear .06s .2s ;
+        animation-fill-mode : forwards ;
+    }
+    .button:hover .button__drow2::before{
+        animation : drow3 linear .03s .26s ;
+        animation-fill-mode : forwards ;
+    }
+    .button:hover .button__drow2::after{
+        animation : drow5 linear .06s .32s ;
+        animation-fill-mode : forwards ;
+    }
+    @keyframes drow1{
+        0%   { height : 0 ; }
+        100% { height : 100px ; }
+    }
+    @keyframes drow2{
+        0%   { width : 0 ; opacity : 0 ;}
+        10%  { opacity : 0 ;}
+        11%  { opacity : 1 ;}
+        100% { width : 320px ; }
+    }
+    @keyframes drow3{
+        0%   { width : 0 ; }
+        100% { width : 80px ; }
+    }
+    @keyframes drow4{
+        0%   { height : 0 ; }
+        100% { height : 120px ; }
+    }
+    @keyframes drow5{
+        0%   { width : 0 ; }
+        100% { width : 124px ; }
+    }
+    
+    
+    
+    
+    
+    
+    /* 本体には関係ないスタイル */
+    .container{
+        width : 100% ;
+        height : 300px ;
+        display : flex ;
+        flex-direction : column ;
+        justify-content : center ;
+        align-items : center ;
+    }
+    .button:not(:last-child){
+      margin-bottom : 64px ;
+    }
